@@ -4,16 +4,16 @@ Platform Engineer practical test by Tata Technologies Limited
 ## Use Case
 Scenario -
 Create a sample application to print “Welcome to 2022”and user agent info using any
-programming language.
+programming language. <br>
 ● Create a VNet in Azure or VPC in AWS or GCP with your own CIDR choice using best
-practices.
-● Build your application and create container image to deploy your application.
+practices. <br>
+● Build your application and create container image to deploy your application. <br>
 ● Deploy your application using any type of automated pipeline on container orchestration
-platform in Azure or AWS or GCP.
-● Give us an endpoint to access your application.
+platform in Azure or AWS or GCP. <br>
+● Give us an endpoint to access your application. <br>
 
-Acess Restraints Observed - ACR (Azure conatiner registry was not provided ) so used Dockerhub to push and pull images. 
-Azure portal App Registration access or RBAC permission was not allowed to create service principal in Azure Devops to connect to Azure Portal.
+Acess Restraints Observed - ACR (Azure conatiner registry was not provided ) so used Dockerhub to push and pull images. <br>
+Azure portal App Registration access or RBAC permission was not allowed to create service principal in Azure Devops to connect to Azure Portal. <br>
 
 ____________________________________________________________________________________________________________________________________________________________________
 ## Getting Started
@@ -24,10 +24,10 @@ Project Stack - Docker, AKS, Azure Portal, DockerHub(For image)
 To Pull my docker image use command - docker pull abhisaxena96/ttlnginx
 
 DockerFiles - 
-• *Dockerfile* - The docker file is used for deploying "Welcome to 2022" application wrriten in simple HTMl on a nginx base image container.
-• *index.html* - Index.html file is used to copy the file in the docker image and replace the default index.html file provided with nginx install.
-• *AKS Templates/deployment.yaml* - A kubernetes kind deployment has been created to run mutiple nginx pod of replica 3 running on a container port 80.
-• *AKS Templates/service.yaml* -  A Kubernetes kind service has been created of type loadbalancer to access the application on a public endpoint while maintaing the traffic in either of the pods.
+• *Dockerfile* - The docker file is used for deploying "Welcome to 2022" application wrriten in simple HTMl on a nginx base image container. <br>
+• *index.html* - Index.html file is used to copy the file in the docker image and replace the default index.html file provided with nginx install. <br>
+• *AKS Templates/deployment.yaml* - A kubernetes kind deployment has been created to run mutiple nginx pod of replica 3 running on a container port 80. <br>
+• *AKS Templates/service.yaml* -  A Kubernetes kind service has been created of type loadbalancer to access the application on a public endpoint while maintaing the traffic in either of the pods. <br>
 
 ### How to Access 
 *Site can be launched on endpoint : http://4.186.11.87/*
