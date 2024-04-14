@@ -1,0 +1,17 @@
+# Use the NGINX base image
+FROM nginx:latest
+
+# Copy the index.html file into NGINX HTML directory
+COPY index.html /usr/share/nginx/html
+
+# Adding permission to folder
+RUN chmod 755 /usr/share/nginx/html
+
+# Changing working directory
+WORKDIR /usr/share/nginx/html
+
+#Adding permission to index.html
+RUN chmod 644 index.html
+
+# Expose port 80
+EXPOSE 80
