@@ -1,4 +1,4 @@
-# Project
+# TTL-Assesment
 Platform Engineer practical test by Tata Technologies Limited
 
 ## Use Case
