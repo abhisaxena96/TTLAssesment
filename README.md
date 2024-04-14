@@ -2,8 +2,9 @@
 Platform Engineer practical test by Tata Technologies Limited
 
 ## Use Case
-Scenario -
-Create a sample application to print “Welcome to 2022”and user agent info using any
+**Scenario -**
+
+● Create a sample application to print “Welcome to 2022”and user agent info using any
 programming language. <br>
 ● Create a VNet in Azure or VPC in AWS or GCP with your own CIDR choice using best
 practices. <br>
@@ -12,7 +13,7 @@ practices. <br>
 platform in Azure or AWS or GCP. <br>
 ● Give us an endpoint to access your application. <br>
 
-### Acess Restraints Observed 
+### Access Restraints Observed 
 ACR (Azure conatiner registry was not provided ) so used Dockerhub to push and pull images. <br>
 Azure portal App Registration access or RBAC permission was not allowed to create service principal in Azure Devops to connect to Azure Portal. <br>
 
@@ -21,7 +22,7 @@ ________________________________________________________________________________
 This project is run and tested on Azure AKS and image buld and pushed to DockerHub. You may need to install Docker Engine, VisualCode (Optional) or any IDE, and require access to Azure portal with AKS access and Vnet access. 
 I have not been granted access to create App registration to connect and run my code as a pipleine so I build the docker file locally on my system and connect AKS and ran the Kubernetes template file to create a deployment and service in the cluster.
 
-Project Stack - Docker, AKS, Azure Portal, DockerHub(For image) <br>
+**Project Stack** - Docker, AKS, Azure Portal, DockerHub(For image) <br>
 To Pull my docker image use command - docker pull abhisaxena96/ttlnginx <br>
  
 • *Dockerfile* - The docker file is used for deploying "Welcome to 2022" application wrriten in simple HTMl on a nginx base image container. <br>
