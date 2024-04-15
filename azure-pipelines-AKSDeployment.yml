@@ -7,10 +7,6 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '3.x'
-
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'TTL_Interview_Evaluation'
