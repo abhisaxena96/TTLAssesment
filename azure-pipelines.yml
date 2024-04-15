@@ -1,0 +1,69 @@
+trigger:
+  branches:
+    include:
+      - master
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  bkstrgrg: 'Abhinav-Saxena-RG'
+  bkstrg: 'ttlteraformtfstate'
+  bkconatiner: 'terraformstate'
+  bkstrgkey: 'terraform.tfstate'
+
+stages:
+- stage: tfvalidate
+  jobs:
+  - job: validate
+    continueOnError: false
+    steps:
+    - task: TerraformInstaller@0
+      displayName: tfinstall
+      inputs:
+        terraformVersion: 'latest'
+    - task: TerraformTaskV4@4
+      displayName: init
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+        backendAzureRmResourceGroupName: '$(bkstrgrg)'
+        backendAzureRmStorageAccountName: '$(bkstrg)'
+        backendAzureRmContainerName: '$(bkcontainer)'
+        backendAzureRmKey: '$(bkstrgkey)'
+    - task: TerraformTaskV4@4
+      displayName: Validate
+      inputs:
+        provider: 'azurerm'
+        command: 'validate'
+- stage: tfdeploy
+  condition: succeeded('tfvalidate')
+  dependsOn: tfvalidate
+  jobs:
+    - job: apply
+      steps:
+        - task: TerraformInstaller@0
+          displayName: tfinstall
+          inputs:
+            terraformVersion: 'latest'
+        - task: TerraformTaskV4@4
+          displayName: init
+          inputs:
+            provider: 'azurerm'
+            command: 'init'
+            workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+            backendAzureRmResourceGroupName: '$(bkstrgrg)'
+            backendAzureRmStorageAccountName: '$(bkstrg)'
+            backendAzureRmContainerName: '$(bkcontainer)'
+            backendAzureRmKey: '$(bkstrgkey)'
+        - task: TerraformTaskV4@4
+          displayName: plan
+          inputs:
+            provider: 'azurerm'
+            command: 'plan'
+        - task: TerraformTaskV4@4
+          displayName: apply
+          inputs:
+            provider: 'azurerm'
+            command: 'apply'
