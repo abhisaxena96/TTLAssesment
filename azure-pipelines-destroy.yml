@@ -1,0 +1,45 @@
+trigger:
+  branches:
+    include:
+      - master
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  bkstrgrg: 'Abhinav-Saxena-RG'
+  bkstrg: 'ttlteraformtfstate'
+  bkconatiner: 'terraformstate'
+  bkstrgkey: 'terraform.tfstate'
+stages:
+- stage: tfdestroy
+  jobs:
+    - job: destroy
+      steps:
+        - task: TerraformInstaller@0
+          displayName: tfinstall
+          inputs:
+            terraformVersion: 'latest'
+        - task: TerraformTaskV4@4
+          displayName: init
+          inputs:
+            provider: 'azurerm'
+            command: 'init'
+            workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+            backendAzureRmResourceGroupName: '$(bkstrgrg)'
+            backendAzureRmStorageAccountName: '$(bkstrg)'
+            backendAzureRmContainerName: '$(bkcontainer)'
+            backendAzureRmKey: '$(bkstrgkey)'
+        - task: TerraformTaskV4@4
+          displayName: plan
+          inputs:
+            provider: 'azurerm'
+            command: 'plan'
+        - task: TerraformTaskV4@4
+          displayName: destroy
+          inputs:
+            provider: 'azurerm'
+            command: 'destroy'
+            
+      
+    
