@@ -22,7 +22,7 @@ steps:
 - task: KubernetesManifest@0
   inputs:
     action: 'deploy'
-    kubernetesServiceConnection: '<Kubernetes Service Connection>'
+    kubernetesServiceConnection: 'aks-cluster-svc'
     manifests: |
       $(System.DefaultWorkingDirectory)/AKS-Templates/deployment.yaml
       $(System.DefaultWorkingDirectory)/AKS-Templates/service.yaml
