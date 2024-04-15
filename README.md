@@ -29,6 +29,9 @@ To Pull my docker image use command - docker pull abhisaxena96/ttlnginx <br>
 • *index.html* - Index.html file is used to copy the file in the docker image and replace the default index.html file provided with nginx install. <br>
 • *AKS Templates/deployment.yaml* - A kubernetes kind deployment has been created to run mutiple nginx pod of replica 3 running on a container port 80. <br>
 • *AKS Templates/service.yaml* -  A Kubernetes kind service has been created of type loadbalancer to access the application on a public endpoint while maintaing the traffic in either of the pods. <br>
+• *main.tf* - Terraform will create Azure Vnet and subnet and will create a AKS clsuter of mimimum and maximum 1 node to save some cost as this is not a production critical deployment. It will attach an Azure CNI and will do a Vnet Integration. <br>
+• *azure-pipelines-apply* - This is a Azure Devops pipline written in YAML to do a CICD of the resource creation and trigger is set to master so whenever master branch will have a change it will trigger . The trigger can also be set to none if continuous deployment is not required. <br>
+• *azure-pipelines-destroy* - Terraform detroy to delete the above resources created from apply pipeline. <br>
 
 ### How to Access 
 *Site can be launched on endpoint : http://4.186.11.87/*
