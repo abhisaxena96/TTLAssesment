@@ -18,7 +18,7 @@ stages:
   - job: validate
     continueOnError: false
     steps:
-    - task: TerraformInstaller@0
+    - task: TerraformInstaller@2
       displayName: tfinstall
       inputs:
         terraformVersion: 'latest'
