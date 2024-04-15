@@ -1,0 +1,28 @@
+trigger:
+  branches:
+    include:
+      - master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'TTL_Interview_Evaluation'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az aks get-credentials --resource-group Abhinav-Saxena-RG --name TTL-Cluster
+
+- task: KubernetesManifest@0
+  inputs:
+    action: 'deploy'
+    kubernetesServiceConnection: '<Kubernetes Service Connection>'
+    manifests: |
+      $(System.DefaultWorkingDirectory)/AKS-Templates/deployment.yaml
+      $(System.DefaultWorkingDirectory)/AKS-Templates/service.yaml
