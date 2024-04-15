@@ -4,7 +4,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_virtual_network" "ttlvnet" {
-  name                = "example-vnet"
+  name                = "ttl-vnet"
   resource_group_name = "Abhinav-Saxena-RG"
   location            = "CentralIndia"
   address_space       = ["10.0.0.0/16"]
@@ -13,7 +13,7 @@ resource "azurerm_virtual_network" "ttlvnet" {
 resource "azurerm_subnet" "ttlsubnet" {
   name                 = "aks-subnet"
   resource_group_name  = "Abhinav-Saxena-RG"
-  virtual_network_name = "example-vnet"
+  virtual_network_name = "ttl-vnet"
   address_prefixes     = ["10.0.0.0/24"]
 }
 
